@@ -1,16 +1,18 @@
 package mx.chkry;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import java.util.logging.Logger;
 
 @Path("/hello")
 public class GreetingResource {
+    Logger logger = Logger.getLogger(GreetingResource.class.getName());
 
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "Hello from Quarkus REST";
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Object hello(Object object) {
+        logger.info(object.toString());
+        return object ;
     }
 }
